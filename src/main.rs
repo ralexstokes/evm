@@ -1,4 +1,4 @@
-use evm::{Context, Interpreter};
+use evm::{context::Transaction as TransactionContext, Context, Interpreter};
 use std::error::Error;
 use std::io::{self, Read};
 
@@ -10,8 +10,14 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let context = Context {
         block: Default::default(),
-        transaction: Default::default(),
-        input,
+        transaction: TransactionContext {
+            gas_limit: Default::default(),
+            gas_price: Default::default(),
+            input,
+            sender: Default::default(),
+        },
+        precompiles: Default::default(),
+        state: Default::default(),
     };
     let execution = Interpreter::default().execute(context)?;
     dbg!(execution);

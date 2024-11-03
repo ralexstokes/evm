@@ -4,6 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+alloy = "0.5.4"
 hex = "0.4.3"
-ruint = "1.12.3"
 thiserror = "1.0.66"
